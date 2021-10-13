@@ -15,6 +15,30 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const SingleProductPage = () => {
+  const { id } = useParams()
+  const id1 = id.slice(1)
+  //we are sliceing to remove colon in from of ID
+  // console.log('id1 is', id)
+  // console.log('id2 is', id1)
+
+  const {
+    single_product_loading: loading,
+    single_product_error: error,
+    single_product: product,
+    fetchSingleProduct,
+  } = useProductsContext()
+
+  useEffect(() => {
+    fetchSingleProduct(`${url}${id1}`)
+  }, [id])
+
+  if (loading) {
+    return <Loading />
+  }
+  if (error) {
+    return <Error />
+  }
+
   return <h4>single product page</h4>
 }
 

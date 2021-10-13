@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import logo from '../assets/logo.svg'
+import Shiroest from '../assets/Shiroest-logo-2.png'
 import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { links } from '../utils/constants'
@@ -9,7 +10,32 @@ import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
-  return <h4>navbar</h4>
+  const { openSideBar } = useProductsContext()
+  return (
+    <NavContainer>
+      <div className='nav-center'>
+        <div className='nav-header'>
+          <Link to='/'>
+            <img src={Shiroest} alt='Shiroest' />
+          </Link>
+          <button type='button' className='nav-toggle' onClick={openSideBar}>
+            <FaBars />
+          </button>
+        </div>
+        <ul className='nav-links'>
+          {links.map((link) => {
+            const { id, text, url } = link
+            return (
+              <li key={id}>
+                <Link to={url}>{text}</Link>
+              </li>
+            )
+          })}
+        </ul>
+        <CartButtons />
+      </div>
+    </NavContainer>
+  )
 }
 
 const NavContainer = styled.nav`
@@ -61,6 +87,7 @@ const NavContainer = styled.nav`
       justify-content: center;
       li {
         margin: 0 0.5rem;
+        text-decoration: none;
       }
       a {
         color: var(--clr-grey-3);

@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/logo.svg'
+import Shiroest from '../assets/Shiroest-logo-2.png'
 import { Link } from 'react-router-dom'
 import { useProductsContext } from '../context/products_context'
 import { FaTimes } from 'react-icons/fa'
@@ -9,7 +9,40 @@ import CartButtons from './CartButtons'
 import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
-  return <h4>sidebar</h4>
+  const { isSideBarOpen, openSideBar, closeSideBar } = useProductsContext()
+
+  return (
+    <SidebarContainer>
+      <aside
+        className={`${isSideBarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}
+      >
+        <div className='sidebar-header'>
+          <img src={Shiroest} alt='shiorest' className='logo' />
+          <button className='close-btn' type='button' onClick={closeSideBar}>
+            <FaTimes />
+          </button>
+        </div>
+        <ul className='links'>
+          {links.map((link) => {
+            const { id, text, url } = link
+            return (
+              <li key={id}>
+                <Link to={url} onClick={closeSideBar}>
+                  {text}
+                </Link>
+              </li>
+            )
+          })}
+          <li>
+            <Link to='/checkout' onClick={closeSideBar}>
+              Checkout
+            </Link>
+          </li>
+        </ul>
+        <CartButtons />
+      </aside>
+    </SidebarContainer>
+  )
 }
 
 const SidebarContainer = styled.div`
