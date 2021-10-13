@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom'
 const SingleProductPage = () => {
   const { id } = useParams()
   const id1 = id.slice(1)
-  //we are sliceing to remove colon in from of ID
+  //we are sliceing to remove colon in front of ID
   // console.log('id1 is', id)
   // console.log('id2 is', id1)
 
