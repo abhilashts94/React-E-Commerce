@@ -20,3 +20,7 @@
 
 .env file in the root
 FAST_REFRESH=FALSE
+
+
+Live Website:-
+https://shiorest-e-commerce.netlify.app/
